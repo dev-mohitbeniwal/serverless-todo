@@ -1,18 +1,18 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "CreateTodo",
   "type": "object",
   "properties": {
-    "name": {
-      "type": "string"
-    },
-    "dueDate": {
-      "type": "string"
-    }
+      "name": { "$ref": "#/definitions/non-empty-string" },
+      "dueDate": { "$ref": "#/definitions/non-empty-string" }
   },
-  "required": [
-    "name",
-    "dueDate"
+  "anyOf": [
+      { "required": ["name"] },
+      { "required": ["dueDate"] }
   ],
-  "additionalProperties": false
+  "definitions": {
+      "non-empty-string": {
+          "type": "string",
+          "minLength": 1
+      }
+  }
 }
